@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Tharushi! ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Confetti Animation Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Moving Animated Background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* Highlighted Photo Section */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 25px 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            transform: rotate(-2deg);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+        }
+
+        .polaroid img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+
+        .polaroid-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: #d63031;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* Glassmorphism Love Letter */
+        .letter-box {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .letter-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 38px;
+            color: #d63031;
+            line-height: 1.5;
+            min-height: 280px; 
+        }
+
+        /* Glowing Buttons */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .magic-btn {
+            background: linear-gradient(45deg, #ff4b5c, #ff6b81);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(255, 75, 92, 0.5);
+        }
+
+        .magic-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 75, 92, 0.8);
+        }
+
+        /* Popup Messages */
+        .hidden-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: none;
+            opacity: 0;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 80%;
+            width: 400px;
+        }
+
+        .hidden-message.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Golden Ticket Design */
+        .coupon {
+            background: linear-gradient(135deg, #ffd700, #ffb300);
+            border: 2px dashed #fff;
+            box-shadow: 0 0 0 4px #ffd700;
+            color: #8b4500;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Kiss Animation Elements */
+        .big-kiss {
+            font-size: 80px;
+            display: inline-block;
+            animation: kissPulse 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes kissPulse {
+            0% { transform: scale(1) rotate(-10deg); }
+            100% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        .flying-kiss {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: flyAway 2s ease-out forwards;
+        }
+
+        @keyframes flyAway {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+            100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(2); }
+        }
+
+        .close-btn {
+            display: block;
+            margin: 20px auto 0;
+            background: #ff4b5c;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            color: #ff4b5c;
+            font-size: 24px;
+            animation: floatUp infinite linear;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body onload="typeWriter()">
+
+    <!-- Audio Files 2k -->
+    <audio id="birthdayMusic" loop>
+        <source src="happy-birthday.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="favMusic" loop>
+        <source src="favorite-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <!-- Tharushi's Photo Section -->
+        <div class="gallery">
+            <div class="polaroid">
+                <img src="tharushi.jpg" alt="Tharushi Salwathura" onerror="this.src='https://via.placeholder.com/250x250/ff9a9e/fff?text=Add+tharushi.jpg+here'">
+                <div class="polaroid-text">My Beautiful Tharushi ❤️</div>
+            </div>
+        </div>
+
+        <!-- Glassmorphism Love Letter -->
+        <div class="letter-box">
+            <p class="letter-text" id="typewriter-text"></p>
+        </div>
+
+        <!-- Interactive Buttons (Now with Play/Pause for Bday Song) -->
+        <div class="btn-container">
+            <button class="magic-btn" id="bdayBtn" onclick="toggleBdayMusic()">🎂 Play B'day Song</button>
+            <button class="magic-btn" onclick="playFavMusic()">🎵 Play Fav Song</button>
+            <button class="magic-btn" onclick="showMessage('message1')">🎁 Open Surprise</button>
+            <button class="magic-btn" onclick="showMessage('message2')">✨ Secret Message</button>
+            <button class="magic-btn" onclick="showMessage('message3')">💋 Surprise 2</button>
+        </div>
+
+    </div>
+
+    <!-- Surprise Golden Ticket Popup -->
+    <div id="message1" class="hidden-message">
+        <h2 style="font-family: 'Great Vibes', cursive; font-size: 40px; color: #ff4b5c; margin: 0;">🎉 Surprise! 🎉</h2>
+        <p style="margin-top: 5px;">You just unlocked a special gift!</p>
+        
+        <div class="coupon">
+            🎫 <b>VIP Birthday Date</b> 🎫<br><br>
+            <span style="font-size: 15px; font-weight: normal; color: #5a2e00;">
+                Valid for: One romantic evening with Pasindu.<br>
+                <b>Dates: 2022.09.20 & 2022.09.21</b><br>
+                (Get ready for a beautiful time! 😉)
+            </span>
+        </div>
+        
+        <button class="close-btn" onclick="closeMessage('message1')">Accept Gift ❤️</button>
+    </div>
+    
+    <!-- Secret Message Popup -->
+    <div id="message2" class="hidden-message">
+        <h3 style="color: #ff4b5c;">My Secret...</h3>
+        No matter where we go or what we do, you will always be my favorite place to be. I love you, Tharushi! 😊❤️
+        <button class="close-btn" onclick="closeMessage('message2')">Close</button>
+    </div>
+
+    <!-- Surprise 2 (Kiss Animation) Popup -->
+    <div id="message3" class="hidden-message" style="text-align: center;">
+        <div class="big-kiss">😘</div>
+        <h2 style="font-family: 'Great Vibes', cursive; font-size: 40px; color: #ff4b5c; margin: 10px 0;">Sending you...</h2>
+        <p style="font-size: 22px; font-weight: bold;">A Million Kisses! 💋❤️</p>
+        <button class="close-btn" onclick="closeMessage('message3')">Mmuaahhh!</button>
+    </div>
+
+    <script>
+        // Typewriter Effect Variables (Added "Sorry for late my wiffy")
+        const text = "Happy Birthday, Tharushi Salwathura! ❤️\n\nFrom the very moment you walked into my life, everything became brighter. I promise to love you, cherish you, and make you smile every single day. Here is to making countless more beautiful memories together.\n\nYours forever,\nPasindu\n💖 2022.09.20 & 2022.09.21 💖\n\nSorry for late my wiffy 🥺❤️";
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                let char = text.charAt(i);
+                if(char === '\n') {
+                    document.getElementById("typewriter-text").innerHTML += "<br>";
+                } else {
+                    document.getElementById("typewriter-text").innerHTML += char;
+                }
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        // Popup Functions & Animations
+        function showMessage(id) {
+            document.getElementById(id).classList.add('show');
+            
+            // Confetti animation for Surprise 1
+            if(id === 'message1') {
+                var duration = 3 * 1000;
+                var end = Date.now() + duration;
+
+                (function frame() {
+                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4b5c', '#ff9a9e', '#ffd700'] });
+                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4b5c', '#ff9a9e', '#ffd700'] });
+                    if (Date.now() < end) requestAnimationFrame(frame);
+                }());
+            }
+
+            // Flying kisses animation for Surprise 2
+            if(id === 'message3') {
+                for(let j = 0; j < 30; j++) {
+                    setTimeout(() => {
+                        const kiss = document.createElement('div');
+                        kiss.classList.add('flying-kiss');
+                        kiss.innerHTML = Math.random() > 0.5 ? '💋' : '😘';
+                        kiss.style.left = '50%';
+                        kiss.style.top = '50%';
+                        
+                        // Random flying direction
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = 150 + Math.random() * 400; // How far they fly
+                        kiss.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                        kiss.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                        
+                        document.body.appendChild(kiss);
+                        
+                        // Remove element after animation
+                        setTimeout(() => kiss.remove(), 2000);
+                    }, j * 100); 
+                }
+            }
+        }
+
+        function closeMessage(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        // Music Controls
+        let bdayMusic = document.getElementById('birthdayMusic');
+        let favMusic = document.getElementById('favMusic');
+        let bdayBtn = document.getElementById('bdayBtn');
+
+        function toggleBdayMusic() {
+            if (bdayMusic.paused) {
+                // If fav music is playing, pause it first
+                if(!favMusic.paused) favMusic.pause(); 
+                
+                bdayMusic.play();
+                bdayBtn.innerHTML = "⏸️ Pause B'day Song";
+            } else {
+                bdayMusic.pause();
+                bdayBtn.innerHTML = "🎂 Play B'day Song";
+            }
+        }
+
+        function playFavMusic() {
+            // Pause bday music if it is playing
+            if(!bdayMusic.paused) {
+                bdayMusic.pause();
+                bdayBtn.innerHTML = "🎂 Play B'day Song";
+            }
+            favMusic.play();
+        }
+
+        // Floating Hearts
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHearts, 300);
+    </script>
+</body>
+</html>
