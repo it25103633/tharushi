@@ -258,10 +258,10 @@
             <p class="letter-text" id="typewriter-text"></p>
         </div>
 
-        <!-- Interactive Buttons (Now with Play/Pause for Bday Song) -->
+        <!-- Interactive Buttons -->
         <div class="btn-container">
             <button class="magic-btn" id="bdayBtn" onclick="toggleBdayMusic()">🎂 Play B'day Song</button>
-            <button class="magic-btn" onclick="playFavMusic()">🎵 Play Fav Song</button>
+            <button class="magic-btn" id="favBtn" onclick="toggleFavMusic()">🎵 Play Fav Song</button>
             <button class="magic-btn" onclick="showMessage('message1')">🎁 Open Surprise</button>
             <button class="magic-btn" onclick="showMessage('message2')">✨ Secret Message</button>
             <button class="magic-btn" onclick="showMessage('message3')">💋 Surprise 2</button>
@@ -302,7 +302,7 @@
     </div>
 
     <script>
-        // Typewriter Effect Variables (Added "Sorry for late my wiffy")
+        // Typewriter Effect Variables
         const text = "Happy Birthday, Tharushi Salwathura! ❤️\n\nFrom the very moment you walked into my life, everything became brighter. I promise to love you, cherish you, and make you smile every single day. Here is to making countless more beautiful memories together.\n\nYours forever,\nPasindu\n💖 2022.09.20 & 2022.09.21 💖\n\nSorry for late my wiffy 🥺❤️";
         let i = 0;
 
@@ -368,12 +368,14 @@
         let bdayMusic = document.getElementById('birthdayMusic');
         let favMusic = document.getElementById('favMusic');
         let bdayBtn = document.getElementById('bdayBtn');
+        let favBtn = document.getElementById('favBtn');
 
         function toggleBdayMusic() {
             if (bdayMusic.paused) {
-                // If fav music is playing, pause it first
-                if(!favMusic.paused) favMusic.pause(); 
-                
+                if(!favMusic.paused) {
+                    favMusic.pause(); 
+                    favBtn.innerHTML = "🎵 Play Fav Song";
+                }
                 bdayMusic.play();
                 bdayBtn.innerHTML = "⏸️ Pause B'day Song";
             } else {
@@ -382,13 +384,18 @@
             }
         }
 
-        function playFavMusic() {
-            // Pause bday music if it is playing
-            if(!bdayMusic.paused) {
-                bdayMusic.pause();
-                bdayBtn.innerHTML = "🎂 Play B'day Song";
+        function toggleFavMusic() {
+            if (favMusic.paused) {
+                if(!bdayMusic.paused) {
+                    bdayMusic.pause();
+                    bdayBtn.innerHTML = "🎂 Play B'day Song";
+                }
+                favMusic.play();
+                favBtn.innerHTML = "⏸️ Pause Fav Song";
+            } else {
+                favMusic.pause();
+                favBtn.innerHTML = "🎵 Play Fav Song";
             }
-            favMusic.play();
         }
 
         // Floating Hearts
